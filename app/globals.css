@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --font-newsreader: "Newsreader", Georgia, serif;
+  --font-inter: "Inter", system-ui, sans-serif;
+  --font-plex-mono: "IBM Plex Mono", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: #f6f1e7;
+  color: #2a2622;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+.dropcap::first-letter {
+  font-family: var(--font-newsreader), serif;
+  font-size: clamp(2.6rem, 9vw, 3.6rem);
+  font-weight: 500;
+  float: left;
+  line-height: 0.78;
+  margin: 4px 8px 0 0;
+  color: #b5603c;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 767px) {
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@keyframes heroZoom {
+  from {
+    transform: scale(1.09);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.hero-zoom {
+  animation: heroZoom 9s cubic-bezier(0.16, 0.6, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-zoom {
+    animation: none;
+  }
+}
+
+/* Large faint watermark numerals used behind section headings for editorial texture */
+.section-num {
+  position: absolute;
+  top: -0.3em;
+  right: 0;
+  font-family: var(--font-newsreader), serif;
+  font-size: clamp(5rem, 16vw, 11rem);
+  line-height: 1;
+  color: #2a2622;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
